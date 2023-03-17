@@ -1,29 +1,17 @@
 import random
 
-# Import discord.py library
-import discord
-from discord.ext import commands
+import discord # Import discord library
+import discord.ext.commands as commands # Import commands extension
 
-# Create a bot instance
-bot = commands.Bot(command_prefix="!")
+class TownOfSalem(commands.Cog, name="Town Of Salem"): # Create a class that inherits from Cog and has a name attribute
+    def __init__(self, bot): # Define an init method that takes self and bot as arguments
+        self.bot = bot # Assign bot to self.bot
+    
+    @commands.command(name="start") # Define a command that starts a new game of TownOfSalem with ctx as argument
+    async def start(self, ctx): # Define an async function that takes self and ctx as arguments
+        
+        # Implement the logic of creating a game object, assigning roles, sending messages, handling events, etc.
+        pass 
 
-
-@bot.command()
-async def mafia_start(ctx):
-    # Get the list of members in the voice channel of the author
-    members = ctx.author.voice.channel.members
-    # Check if there are at least 7 players
-    if len(members) < 7:
-        await ctx.send("Not enough players to start a game.")
-        return
-    # Shuffle the list of members
-    random.shuffle(members)
-    # Assign roles to each member based on their position in the list
-    roles = ["Mafia", "Doctor", "Sheriff", "Jester",
-             "Investigator", "Escort", "Townie"]
-    for i, member in enumerate(members):
-        role = roles[i % len(roles)]
-        # Send a private message to each member with their role
-        await member.send(f"Your role is {role}.")
-    # Announce that the game has started and send instructions
-    await ctx.send("The game has started. Check your DMs for your role. The night phase begins now. Mafia, choose someone to kill. Doctor, choose someone to heal. Sheriff, choose someone to investigate.")
+def setup(bot): # Define a setup function that takes bot as argument
+    bot.add_cog(TownOfSalem(bot)) # Add TownOfSalem cog to bot 

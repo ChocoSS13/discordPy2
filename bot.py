@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import discord
-import discord.ext.commands as commands
+import discord.ext.commands as commands # Import commands extension
 
 # Import random module for shuffling roles
 import random
@@ -16,6 +16,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
+
+client.load_extension("TownOfSalem") # Load TownOfSalem cog
 
 # Define a list of possible roles for the game (based on Town of Salem)
 ROLES = ['Мафия', 'Доктор', 'Детектив', 'Мирный', 'Шериф', 'Серийный убийца', 'Ведьма']
