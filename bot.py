@@ -6,9 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import discord
+import discord.ext.commands as commands
 
 # Import random module for shuffling roles
 import random
+import TownOfSalem
 
 intents = discord.Intents.default()
 intents.message_content = True
